@@ -1,58 +1,225 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Gugugaga Wedding Organizer
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> Website premium wedding organizer dengan admin dashboard — dibangun menggunakan Laravel 10, MySQL, dan Blade Template.
 
-## About Laravel
+![Laravel](https://img.shields.io/badge/Laravel-10-FF2D20?style=flat&logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-8.1+-777BB4?style=flat&logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=flat&logo=mysql&logoColor=white)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Fitur
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Frontend (Website Publik)
+- 🏠 **Home** — Hero animasi, statistik, layanan, gallery, testimoni, partner
+- 👤 **Profil** — Tentang perusahaan & tim
+- 👁️ **Visi & Misi** — Visi, misi, dan core values
+- 💼 **Layanan** — Daftar paket dengan detail & harga
+- 🤝 **Partner** — Kolaborasi vendor dengan filter kategori
+- 🖼️ **Gallery** — Foto & video dengan lightbox + filter
+- 📩 **Kontak** — Form inquiry lengkap
 
-## Learning Laravel
+### Admin Dashboard
+- 📊 Dashboard statistik & ringkasan
+- ✏️ Kelola profil, visi & misi, tim
+- 💼 CRUD layanan, partner, gallery, testimoni
+- 📨 Baca & kelola pesan masuk
+- ⚙️ Pengaturan SEO, warna brand, maintenance mode
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🛠️ Persyaratan
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+Pastikan sudah terinstall:
 
-## Agentic Development
+- PHP >= 8.1
+- Composer
+- MySQL >= 8.0
+- Git
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+---
+
+## 🚀 Cara Menjalankan
+
+### 1. Clone Repository
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/dhimsky/WeddingOrganizer.git
+cd gugugaga-wedding-organizer
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Install Dependency
 
-## Contributing
+```bash
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3. Konfigurasi Environment
 
-## Code of Conduct
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 4. Konfigurasi Database
 
-## Security Vulnerabilities
+Edit file `.env`:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=gugugaga_wedding
+DB_USERNAME=root
+DB_PASSWORD=password_kamu
+```
 
-## License
+Buat database:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+mysql -u root -p -e "CREATE DATABASE gugugaga_wedding;"
+```
+
+### 5. Migrasi & Seed Database
+
+```bash
+php artisan migrate
+php artisan db:seed
+```
+
+### 6. Storage Link
+
+```bash
+php artisan storage:link
+```
+
+### 7. Jalankan Server
+
+```bash
+php artisan serve
+```
+
+- 🌐 **Website** → http://127.0.0.1:8000
+- 🔐 **Admin** → http://127.0.0.1:8000/admin/login
+
+---
+
+## 🔐 Akun Admin Default
+
+| | |
+|---|---|
+| **Email** | `admin@gugugaga-wedding.com` |
+| **Password** | `password` |
+
+> ⚠️ Ganti password setelah login pertama kali!
+
+---
+
+## 📁 Struktur Folder
+
+gugugaga-wedding-organizer/
+├── app/
+│   ├── Http/Controllers/
+│   │   ├── Admin/          # Controller admin dashboard
+│   │   └── Frontend/       # Controller halaman publik
+│   └── Models/             # Eloquent models
+├── database/
+│   ├── migrations/         # Schema database
+│   └── seeders/            # Data awal / demo
+├── resources/views/
+│   ├── layouts/            # Layout utama (frontend & admin)
+│   ├── frontend/           # Halaman publik
+│   └── admin/              # Halaman dashboard
+└── routes/web.php          # Semua routing
+
+---
+
+## ⚙️ Konfigurasi Tambahan
+
+### Upload File Besar (Video)
+
+Edit `php.ini`:
+
+```ini
+upload_max_filesize = 100M
+post_max_size = 100M
+max_execution_time = 120
+```
+
+Jika menggunakan **Laravel Herd**:
+1. Klik icon Herd di menu bar
+2. Pilih **PHP → Edit configuration**
+3. Ubah nilai di atas
+4. Restart PHP dari menu Herd
+
+### Ganti Warna Brand
+
+Edit CSS variable di `resources/views/layouts/frontend.blade.php`:
+
+```css
+:root {
+    --gold: #C9A96E;
+}
+```
+
+Atau lewat **Admin → Pengaturan → Warna Utama**.
+
+---
+
+## 🔄 Setelah Pull Perubahan
+
+```bash
+git pull origin main
+composer install
+php artisan migrate
+php artisan storage:link
+```
+
+---
+
+## 🐛 Troubleshooting
+
+**Error: `Could not open input file: artisan`**
+```bash
+cd gugugaga-wedding-organizer
+php artisan serve
+```
+
+**Error: `Access denied for user root`**
+```bash
+mysql -u root -p -e "CREATE DATABASE gugugaga_wedding;"
+```
+
+**Gambar tidak tampil setelah upload**
+```bash
+php artisan storage:link
+```
+
+**Error: `PostTooLargeException` saat upload video**
+
+Naikkan nilai `upload_max_filesize` dan `post_max_size` di `php.ini`.
+
+**Halaman 404**
+```bash
+php artisan route:clear
+php artisan cache:clear
+```
+
+---
+
+## 🛠️ Tech Stack
+
+| Komponen | Teknologi |
+|---|---|
+| Framework | Laravel 10 |
+| Language | PHP 8.1+ |
+| Database | MySQL 8 |
+| Template | Laravel Blade |
+| CSS | Vanilla CSS |
+| Font | Cormorant Garamond + Jost |
+| Icons | Font Awesome 6 |
+| Auth | Laravel Built-in |
+
+---
+
+*Gugugaga Wedding Organizer — Crafted with ♥ Love*
