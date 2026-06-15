@@ -29,18 +29,35 @@
 <div class="card">
     @if($galleries->count())
     <div class="gallery-admin-grid">
-        @php
-        $imgs = [
-            'https://images.unsplash.com/photo-1519741497674-611481863552?w=400&q=70',
-            'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=400&q=70',
-            'https://images.unsplash.com/photo-1510076857177-7470076d4098?w=400&q=70',
-            'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&q=70',
-        ];
-        @endphp
         @foreach($galleries as $i => $item)
         <div class="gallery-admin-item">
             <div class="gallery-admin-thumb">
                 @if($item->file_type === 'video')
+                    <video
+                        src="{{ asset('storage/' . $item->file_path) }}"
+                        controls
+                        muted
+                        playsinline
+                        style="width:100%;height:100%;object-fit:cover;"
+                    ></video>
+
+                    <span class="type-badge">
+                        <i class="fas fa-video"></i> Video
+                    </span>
+                @else
+                    <img
+                        src="{{ asset('storage/' . $item->file_path) }}"
+                        alt="{{ $item->title }}"
+                        style="width:100%;height:100%;object-fit:cover;"
+                        onerror="this.src='https://placehold.co/600x400?text=Image+Not+Found'"
+                    >
+
+                    <span class="type-badge">
+                        <i class="fas fa-image"></i> Foto
+                    </span>
+                @endif
+                
+                {{-- @if($item->file_type === 'video')
                     <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#1A1A1A">
                         <i class="fas fa-play-circle" style="font-size:3rem;color:rgba(255,255,255,0.6)"></i>
                     </div>
@@ -48,7 +65,7 @@
                 @else
                     <img src="{{ $imgs[$i % count($imgs)] }}" alt="{{ $item->title }}">
                     <span class="type-badge"><i class="fas fa-image"></i> Foto</span>
-                @endif
+                @endif --}}
                 @if($item->is_featured)
                 <span class="featured-badge">★ Featured</span>
                 @endif
