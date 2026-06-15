@@ -12,8 +12,8 @@ class DatabaseSeeder extends Seeder
     {
         // Create admin user
         DB::table('users')->insert([
-            'name' => 'Admin Gugugaga',
-            'email' => 'admin@gugugaga-wedding.com',
+            'name' => 'Admin',
+            'email' => 'admin@wedding.com',
             'password' => Hash::make('password'),
             'created_at' => now(),
             'updated_at' => now(),
@@ -131,11 +131,9 @@ class DatabaseSeeder extends Seeder
 
         // Settings
         $settings = [
-            ['key' => 'site_title', 'value' => 'Gugugaga Wedding Organizer'],
+            ['key' => 'site_title', 'value' => 'Wedding Organizer'],
             ['key' => 'meta_description', 'value' => 'Wedding organizer premium di Jakarta dengan pengalaman 10+ tahun'],
             ['key' => 'hero_tagline', 'value' => 'Crafting Your Perfect Love Story'],
-            ['key' => 'primary_color', 'value' => '#C9A96E'],
-            ['key' => 'maintenance_mode', 'value' => '0'],
         ];
 
         foreach ($settings as $setting) {
