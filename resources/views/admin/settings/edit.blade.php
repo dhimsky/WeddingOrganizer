@@ -48,46 +48,13 @@
                     <div class="form-hint">Teks utama yang tampil di atas gambar hero.</div>
                 </div>
             </div>
-
-            <!-- Maintenance -->
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-tools" style="color:var(--gold);margin-right:0.5rem"></i>Mode Maintenance</h3>
-                </div>
-                <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem;border:1px solid #EDE9E3">
-                    <div>
-                        <div style="font-size:0.875rem;font-weight:500">Aktifkan Maintenance Mode</div>
-                        <div style="font-size:0.78rem;color:var(--warm-gray);margin-top:2px">Website tidak dapat diakses oleh publik</div>
-                    </div>
-                    <label style="position:relative;width:46px;height:24px;cursor:pointer">
-                        <input type="checkbox" name="maintenance_mode" value="1"
-                            {{ ($settings['maintenance_mode'] ?? '0') == '1' ? 'checked' : '' }}
-                            style="opacity:0;width:0;height:0" id="maintenanceToggle">
-                        <span id="toggleKnob" style="position:absolute;inset:0;background:#DDD;border-radius:24px;transition:background 0.3s">
-                            <span style="position:absolute;width:18px;height:18px;background:white;border-radius:50%;top:3px;left:3px;transition:transform 0.3s;box-shadow:0 1px 3px rgba(0,0,0,0.2)" id="knob"></span>
-                        </span>
-                    </label>
-                </div>
-            </div>
         </div>
 
         <!-- Appearance -->
         <div>
             <div class="card" style="position:sticky;top:80px">
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-palette" style="color:var(--gold);margin-right:0.5rem"></i>Tampilan</h3>
-                </div>
-                <div class="form-group">
-                    <label>Warna Utama (Gold)</label>
-                    <div style="display:flex;gap:0.75rem;align-items:center">
-                        <input type="color" name="primary_color" id="colorPicker"
-                            value="{{ old('primary_color', $settings['primary_color'] ?? '#C9A96E') }}"
-                            style="width:48px;height:38px;border:1px solid #EDE9E3;cursor:pointer;padding:2px">
-                        <input type="text" id="colorText"
-                            value="{{ old('primary_color', $settings['primary_color'] ?? '#C9A96E') }}"
-                            class="form-control" style="font-family:monospace" readonly>
-                    </div>
-                    <div class="form-hint">Warna gold utama brand Anda.</div>
+                    <h3 class="card-title"><i class="fas fa-palette" style="color:var(--gold);margin-right:0.5rem"></i>Tech Stack</h3>
                 </div>
 
                 <div style="padding:1.5rem;border:1px solid var(--border);background:rgba(201,169,110,0.04);margin-top:0.5rem">
