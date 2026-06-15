@@ -16,7 +16,7 @@
 .gallery-overlay { position:absolute; inset:0; background:rgba(0,0,0,0.6); display:flex; flex-direction:column; align-items:center; justify-content:center; opacity:0; transition:opacity 0.4s; }
 .gallery-item:hover .gallery-overlay { opacity:1; }
 .gallery-overlay h4 { color:white; font-family:var(--font-serif); font-size:1.1rem; font-weight:400; margin-bottom:0.3rem; }
-.gallery-overlay span { color:var(--gold-light); font-size:0.75rem; letter-spacing:0.1em; }
+.gallery-overlay span { color: white; font-size:0.75rem; letter-spacing:0.1em; }
 /* Lightbox */
 .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:2000; align-items:center; justify-content:center; }
 .lightbox.open { display:flex; }
