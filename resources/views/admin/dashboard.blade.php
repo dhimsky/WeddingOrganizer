@@ -160,35 +160,37 @@
     <!-- Right Column -->
     <div>
         <!-- Gallery Preview -->
-        <div class="card" style="margin-bottom:1.5rem">
-            <div class="card-header">
-                <h3 class="card-title">Gallery Terbaru</h3>
-                <a href="{{ route('admin.gallery.index') }}" class="topbar-btn" style="font-size:0.72rem;padding:0.4rem 0.875rem">Kelola</a>
-            </div>
-            @if($recentGalleries->count())
-            <div class="gallery-mini">
-                @php
-                $imgs = [
-                    'https://images.unsplash.com/photo-1519741497674-611481863552?w=200&q=70',
-                    'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=200&q=70',
-                    'https://images.unsplash.com/photo-1488116458870-8e25b8c4bfef?w=200&q=70',
-                    'https://images.unsplash.com/photo-1510076857177-7470076d4098?w=200&q=70',
-                    'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=200&q=70',
-                    'https://images.unsplash.com/photo-1511285560929-80b456503681?w=200&q=70',
-                ];
-                @endphp
-                @foreach($recentGalleries->take(6) as $i => $item)
+        @if($recentGalleries->count())
+        <div class="gallery-mini">
+            @foreach($recentGalleries->take(6) as $item)
                 <div class="gallery-mini-item">
-                    <img src="{{ $imgs[$i % count($imgs)] }}" alt="{{ $item->title }}">
+                    @if($item->file_type === 'video')
+                        <video
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            preload="metadata"
+                            style="width:100%;height:100%;object-fit:cover;"
+                        >
+                            <source src="{{ asset('storage/' . $item->file_path) }}" type="video/mp4">
+                            Browser Anda tidak mendukung video.
+                        </video>
+                    @else
+                        <img
+                            src="{{ asset('storage/' . $item->file_path) }}"
+                            alt="{{ $item->title }}"
+                            style="width:100%;height:100%;object-fit:cover;"
+                        >
+                    @endif
                 </div>
-                @endforeach
-            </div>
-            @else
-            <div style="text-align:center;padding:2rem;color:var(--warm-gray);font-size:0.8rem">
-                Belum ada foto/video
-            </div>
-            @endif
+            @endforeach
         </div>
+        @else
+        <div style="text-align:center;padding:2rem;color:var(--warm-gray);font-size:0.8rem">
+            Belum ada foto/video
+        </div>
+        @endif
 
         <!-- Stats Summary -->
         <div class="card">
