@@ -3,6 +3,9 @@
 @section('title', ($profile->company_name ?? 'Gugugaga') . ' - ' . ($profile->tagline ?? 'Wedding Organizer Premium'))
 
 @section('styles')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 <style>
     /* ─── Hero ─── */
     .hero {
@@ -330,7 +333,7 @@
     .gallery-item-overlay {
         position: absolute;
         inset: 0;
-        background: rgba(201,169,110,0.85);
+        background: rgba(0, 0, 0, 0.85);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -399,6 +402,33 @@
     }
 
     .testimonial-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    .testimonials-swiper {
+        padding-bottom: 50px;
+    }
+
+    .testimonials-swiper .swiper-slide {
+        height: auto;
+        display: grid;
+        gap: 2rem;
+    }
+
+    .swiper-pagination {
+        bottom: 0 !important;
+    }
+
+    .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
+        opacity: 0.3;
+        transition: all 0.3s ease;
+    }
+
+    .swiper-pagination-bullet-active {
+        opacity: 1;
+        transform: scale(1.3);
+        background: #002E7A;
+    }
 
     .author-name {
         font-family: var(--font-serif);
@@ -658,7 +688,7 @@
         </div>
 
         <div style="text-align:center;margin-top:3rem">
-            <a href="{{ route('gallery') }}" class="btn-outline" style="border-color:rgba(201,169,110,0.5);color:var(--gold-light)">
+            <a href="{{ route('gallery') }}" class="btn-outline" style="border-color:rgba(255, 255, 255, 0.5);color:var(--gold-light)">
                 Lihat Semua Gallery
             </a>
         </div>
@@ -674,28 +704,44 @@
             <div class="section-divider"></div>
         </div>
 
-        <div class="testimonials-grid">
-            @foreach($testimonials->take(3) as $testimonial)
-            <div class="testimonial-card reveal">
-                <div class="stars">★★★★★</div>
-                <span class="testimonial-quote">"</span>
-                <p class="testimonial-text">{{ $testimonial->testimonial }}</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">
-                        @if($testimonial->photo)
-                            <img src="{{ asset('storage/' . $testimonial->photo) }}" alt="{{ $testimonial->couple_name }}">
-                        @else
-                            {{ substr($testimonial->couple_name, 0, 1) }}
-                        @endif
-                    </div>
-                    <div>
-                        <div class="author-name">{{ $testimonial->couple_name }}</div>
-                        <div class="author-event">{{ $testimonial->event_date }} · {{ $testimonial->event_type }}</div>
-                    </div>
+
+            <div class="swiper testimonials-swiper">
+                <div class="swiper-wrapper">
+                    @foreach($testimonials->take(5) as $testimonial)
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="stars">★★★★★</div>
+                                <span class="testimonial-quote">"</span>
+
+                                <p class="testimonial-text">
+                                    {{ $testimonial->testimonial }}
+                                </p>
+
+                                <div class="testimonial-author">
+                                    <div class="testimonial-avatar">
+                                        @if($testimonial->photo)
+                                            <img src="{{ asset('storage/' . $testimonial->photo) }}"
+                                                alt="{{ $testimonial->couple_name }}">
+                                        @else
+                                            {{ substr($testimonial->couple_name, 0, 1) }}
+                                        @endif
+                                    </div>
+
+                                    <div>
+                                        <div class="author-name">{{ $testimonial->couple_name }}</div>
+                                        <div class="author-event">
+                                            {{ $testimonial->event_date }} · {{ $testimonial->event_type }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
+
+                <div class="swiper-pagination"></div>
             </div>
-            @endforeach
-        </div>
+
     </div>
 </section>
 
@@ -752,6 +798,36 @@
 @endsection
 
 @section('scripts')
+<script>
+new Swiper(".testimonials-swiper", {
+    loop: true,
+    speed: 800,
+    spaceBetween: 24,
+
+    autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+    },
+
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+
+    breakpoints: {
+        0: {
+            slidesPerView: 1,
+        },
+        768: {
+            slidesPerView: 2,
+        },
+        1200: {
+            slidesPerView: 3,
+        }
+    }
+});
+</script>
 <script>
     // Counter animation
     const counters = document.querySelectorAll('[data-count]');
