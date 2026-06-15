@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login - Gugugaga Wedding Organizer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
-            --gold: #C9A96E; --gold-light: #E8D5B0; --gold-dark: #9B7B4C;
+            --gold: #002E7A; --gold-light: #1A4A9A; --gold-dark: #001F54;
             --cream: #FAF7F2; --charcoal: #1A1A1A; --warm-gray: #6B6B6B;
-            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-serif: 'Inter', Georgia, serif;
             --font-sans: 'Jost', sans-serif;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
@@ -89,7 +90,7 @@
         .form-group input {
             width: 100%;
             padding: 0.875rem 1rem 0.875rem 2.75rem;
-            border: 1px solid #E0DDD8;
+            border: 1px solid #ffffff;
             background: var(--cream);
             font-family: var(--font-sans);
             font-size: 0.9rem;
@@ -149,17 +150,17 @@
 <body>
     <div class="login-left">
         <div class="login-left-content">
-            <div class="brand-logo">Gugugaga<span>✦</span></div>
+            {{-- <div class="brand-logo">Gugugaga<span>✦</span></div> --}}
             <h2>Admin<br>Dashboard</h2>
             <div class="login-left-divider"></div>
-            <p>Kelola seluruh konten website Gugugaga Wedding Organizer dengan mudah dan efisien.</p>
+            <p>Kelola seluruh konten website dengan mudah dan efisien.</p>
         </div>
     </div>
 
     <div class="login-right">
         <div class="login-box">
             <h3>Selamat Datang</h3>
-            <p>Masuk ke panel administrasi Gugugaga</p>
+            <p>Masuk ke panel administrasi</p>
 
             @if($errors->any())
             <div class="alert-error">
