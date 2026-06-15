@@ -3,7 +3,7 @@
 @section('styles')
 <style>
 .page-hero { min-height:45vh; background:var(--charcoal); display:flex; align-items:center; justify-content:center; text-align:center; position:relative; }
-.page-hero::before { content:''; position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1511285560929-80b456503681?w=1920&q=80') center/cover; opacity:0.25; }
+.page-hero::before { content:''; position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1518049362265-d5b2a6467637?w=800&q=80') center/cover; opacity:0.25; }
 .page-hero-content { position:relative; z-index:1; color:white; }
 .page-hero h1 { font-family:var(--font-serif); font-size:clamp(2.5rem,5vw,4.5rem); font-weight:300; }
 .profile-intro { display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center; }
@@ -103,12 +103,14 @@
             </div>
             <div class="reveal">
                 <span class="section-label">{{ $profile->company_name ?? 'Wedding Organizer' }}</span>
+                <div class="profile-text">
                 <h2>{{ $profile->tagline ?? 'Crafting Your Perfect Love Story' }}</h2>
                 <div class="section-divider" style="margin:1.5rem 0"></div>
-                <p>{{ $profile->description ?? '' }}</p>
-                @if($profile && $profile->founded_year)
-                <p>Berdiri sejak tahun {{ $profile->founded_year }}, kami telah berkembang menjadi salah satu wedding organizer terpercaya di Indonesia.</p>
-                @endif
+                    <p>{{ $profile->description ?? '' }}</p>
+                    @if($profile && $profile->founded_year)
+                    <p>Berdiri sejak tahun {{ $profile->founded_year }}, kami telah berkembang menjadi salah satu wedding organizer terpercaya di Indonesia.</p>
+                    @endif
+                </div>
                 <div class="profile-stats">
                     <div class="profile-stat"><div class="num">{{ $profile->events_done ?? 350 }}+</div><div class="lbl">Events</div></div>
                     <div class="profile-stat"><div class="num">{{ $profile->happy_couples ?? 350 }}+</div><div class="lbl">Happy Couples</div></div>
