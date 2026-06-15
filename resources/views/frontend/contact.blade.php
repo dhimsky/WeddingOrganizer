@@ -47,8 +47,10 @@
             <!-- Info -->
             <div class="reveal">
                 <span class="section-label">Konsultasi Gratis</span>
+                <div class="contact-info">
                 <h3>Wujudkan Pernikahan Impian Anda</h3>
-                <p>Kami siap membantu Anda merencanakan hari istimewa yang tak terlupakan. Hubungi kami untuk konsultasi gratis dan diskusikan visi pernikahan Anda bersama tim kami.</p>
+                    <p>Kami siap membantu Anda merencanakan hari istimewa yang tak terlupakan. Hubungi kami untuk konsultasi gratis dan diskusikan visi pernikahan Anda bersama tim kami.</p>
+                </div>
 
                 @if($profile)
                 <div class="contact-item">
