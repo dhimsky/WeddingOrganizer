@@ -24,7 +24,7 @@
 - ✏️ Kelola profil, visi & misi, tim
 - 💼 CRUD layanan, partner, gallery, testimoni
 - 📨 Baca & kelola pesan masuk
-- ⚙️ Pengaturan SEO, warna brand, maintenance mode
+- ⚙️ Pengaturan SEO
 
 ---
 
@@ -45,7 +45,7 @@ Pastikan sudah terinstall:
 
 ```bash
 git clone https://github.com/dhimsky/WeddingOrganizer.git
-cd gugugaga-wedding-organizer
+cd WeddingOrganizer
 ```
 
 ### 2. Install Dependency
@@ -69,7 +69,7 @@ Edit file `.env`:
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=gugugaga_wedding
+DB_DATABASE=wedding_organizer
 DB_USERNAME=root
 DB_PASSWORD=password_kamu
 ```
@@ -77,7 +77,7 @@ DB_PASSWORD=password_kamu
 Buat database:
 
 ```bash
-mysql -u root -p -e "CREATE DATABASE gugugaga_wedding;"
+mysql -u root -p -e "CREATE DATABASE wedding_organizer;"
 ```
 
 ### 5. Migrasi & Seed Database
@@ -108,7 +108,7 @@ php artisan serve
 
 | | |
 |---|---|
-| **Email** | `admin@gugugaga-wedding.com` |
+| **Email** | `admin@wedding.com` |
 | **Password** | `password` |
 
 > ⚠️ Ganti password setelah login pertama kali!
@@ -152,19 +152,6 @@ Jika menggunakan **Laravel Herd**:
 3. Ubah nilai di atas
 4. Restart PHP dari menu Herd
 
-### Ganti Warna Brand
-
-Edit CSS variable di `resources/views/layouts/frontend.blade.php`:
-
-```css
-:root {
-    --gold: #C9A96E;
-}
-```
-
-Atau lewat **Admin → Pengaturan → Warna Utama**.
-
----
 
 ## 🔄 Setelah Pull Perubahan
 
@@ -181,13 +168,13 @@ php artisan storage:link
 
 **Error: `Could not open input file: artisan`**
 ```bash
-cd gugugaga-wedding-organizer
+cd WeddingOrganizer
 php artisan serve
 ```
 
 **Error: `Access denied for user root`**
 ```bash
-mysql -u root -p -e "CREATE DATABASE gugugaga_wedding;"
+mysql -u root -p -e "CREATE DATABASE wedding_organizer;"
 ```
 
 **Gambar tidak tampil setelah upload**
@@ -222,4 +209,4 @@ php artisan cache:clear
 
 ---
 
-*Gugugaga Wedding Organizer — Crafted with ♥ Love*
+*Wedding Organizer*
