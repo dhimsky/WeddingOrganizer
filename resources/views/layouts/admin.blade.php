@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Dashboard') — Gugugaga Admin</title>
+    <title>@yield('title', 'Dashboard') — Admin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
-            --gold: #C9A96E; --gold-light: #E8D5B0; --gold-dark: #9B7B4C;
+            --gold: #002E7A; --gold-light: #1A4A9A; --gold-dark: #001F54;
             --cream: #FAF7F2; --charcoal: #1A1A1A; --warm-gray: #6B6B6B;
             --sidebar-bg: #111111; --sidebar-w: 260px;
-            --font-serif: 'Cormorant Garamond', serif;
+            --font-serif: 'Inter', serif;
             --font-sans: 'Jost', sans-serif;
-            --border: rgba(201,169,110,0.15);
+            --border: rgba(201,169,110,0.15);   
             --bg: #F5F3EF;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
@@ -79,8 +80,8 @@
         .sidebar-nav a:hover { color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.04); }
 
         .sidebar-nav a.active {
-            color: var(--gold);
-            background: rgba(201,169,110,0.08);
+            color: white;
+            background: var(--gold);
         }
 
         .sidebar-nav a.active::before {
@@ -387,10 +388,27 @@
 
 <!-- Sidebar -->
 <aside class="sidebar" id="sidebar">
-    <div class="sidebar-brand">
-        <a href="{{ route('admin.dashboard') }}" class="sidebar-logo">Gugugaga<span>✦</span></a>
-        <div class="sidebar-tagline">Admin Panel</div>
+    @php
+    $profile = \App\Models\Profile::first();
+@endphp
+
+<div class="sidebar-brand">
+    <a href="{{ route('admin.dashboard') }}" class="sidebar-logo">
+        @if($profile && $profile->logo)
+            <img
+                src="{{ asset('storage/' . $profile->logo) }}"
+                alt="{{ $profile->company_name }}"
+                style="height: 50px; width: auto; object-fit: contain;"
+            >
+        @else
+            Gugugaga<span>✦</span>
+        @endif
+    </a>
+
+    <div class="sidebar-tagline">
+        {{ $profile->company_name ?? 'Admin Panel' }}
     </div>
+</div>
 
     <nav class="sidebar-nav">
         <div class="nav-section-label">Overview</div>
