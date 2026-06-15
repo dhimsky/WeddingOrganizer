@@ -3,7 +3,7 @@
 @section('styles')
 <style>
 .page-hero { min-height:45vh; background:var(--charcoal); display:flex; align-items:center; justify-content:center; text-align:center; position:relative; }
-.page-hero::before { content:''; position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1488116458870-8e25b8c4bfef?w=1920&q=80') center/cover; opacity:0.2; }
+.page-hero::before { content:''; position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1510076857177-7470076d4098?w=800&q=80') center/cover; opacity:0.2; }
 .page-hero-content { position:relative; z-index:1; color:white; }
 .page-hero h1 { font-family:var(--font-serif); font-size:clamp(2.5rem,5vw,4.5rem); font-weight:300; }
 .filter-tabs { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-bottom:3rem; }
