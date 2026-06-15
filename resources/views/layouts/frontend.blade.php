@@ -5,27 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @php $settings = \App\Models\Setting::all()->pluck('value','key'); @endphp
     <meta name="description" content="{{ $settings['meta_description'] ?? 'Wedding organizer premium' }}">
-    <title>@yield('title', $settings['site_title'] ?? 'Lumière Wedding Organizer')</title>
+    <title>{{ $settings['site_title'] }} - {{ $settings['hero_tagline'] }}</title>
+    
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
 
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
         :root {
-            --gold: {{ $settings['primary_color'] ?? '#C9A96E' }};
-            --gold-light: #E8D5B0;
-            --gold-dark: #9B7B4C;
-            --cream: #FAF7F2;
-            --charcoal: #1A1A1A;
-            --warm-gray: #6B6B6B;
-            --border: rgba(201,169,110,0.2);
-            --font-serif: 'Cormorant Garamond', Georgia, serif;
-            --font-sans: 'Jost', sans-serif;
+            --blue: #002E7A;
+            --blue-light: #1A4A9A;
+            --blue-dark: #001F54;
+            --blue-muted: rgba(0,46,122,0.08);
+            --cream: #FFFFFF;
+            --off-white: #F5F7FB;
+            --charcoal: #0A1628;
+            --warm-gray: #5A6A82;
+            --border: rgba(0,46,122,0.12);
+            --font-serif: 'Inter', Georgia, serif;
+            --font-sans: 'Inter', sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -39,12 +40,10 @@
             overflow-x: hidden;
         }
 
-        /* ─── Scrollbar ─── */
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--cream); }
-        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+        ::-webkit-scrollbar-track { background: var(--off-white); }
+        ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
 
-        /* ─── Navbar ─── */
         .navbar {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
             padding: 1.5rem 0;
@@ -52,10 +51,10 @@
         }
 
         .navbar.scrolled {
-            background: rgba(250,247,242,0.97);
+            background: rgba(255,255,255,0.97);
             backdrop-filter: blur(20px);
             padding: 1rem 0;
-            box-shadow: 0 1px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 1px 30px rgba(0,46,122,0.08);
         }
 
         .navbar-inner {
@@ -76,7 +75,7 @@
             letter-spacing: 0.05em;
         }
 
-        .nav-logo span { color: var(--gold); }
+        .nav-logo span { color: var(--blue); }
 
         .nav-links {
             display: flex;
@@ -86,9 +85,9 @@
         }
 
         .nav-links a {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 500;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
             color: var(--charcoal);
             text-decoration: none;
@@ -100,27 +99,27 @@
             content: '';
             position: absolute;
             bottom: -4px; left: 0; right: 0;
-            height: 1px;
-            background: var(--gold);
+            height: 1.5px;
+            background: var(--blue);
             transform: scaleX(0);
             transition: transform 0.3s;
         }
 
-        .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover { color: var(--blue); }
         .nav-links a:hover::after { transform: scaleX(1); }
 
         .nav-cta {
             padding: 0.65rem 1.8rem;
-            border: 1px solid var(--gold);
-            color: var(--gold) !important;
+            border: 1.5px solid var(--blue);
+            color: var(--blue) !important;
             border-radius: 0;
-            font-size: 0.75rem !important;
-            letter-spacing: 0.2em;
+            font-size: 0.72rem !important;
+            letter-spacing: 0.18em;
             transition: all 0.3s !important;
         }
 
         .nav-cta:hover {
-            background: var(--gold) !important;
+            background: var(--blue) !important;
             color: white !important;
         }
 
@@ -144,13 +143,12 @@
             transition: all 0.3s;
         }
 
-        /* ─── Mobile Menu ─── */
         .mobile-menu {
             position: fixed;
             top: 0; right: -100%;
             width: 300px; height: 100vh;
-            background: var(--cream);
-            z-index: 999;
+            background: white;
+            z-index: 1001;
             padding: 5rem 2rem 2rem;
             transition: right 0.4s ease;
             border-left: 1px solid var(--border);
@@ -161,7 +159,7 @@
         .mobile-menu-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,46,122,0.35);
             z-index: 998;
             opacity: 0;
             pointer-events: none;
@@ -181,7 +179,7 @@
             transition: color 0.3s;
         }
 
-        .mobile-menu a:hover { color: var(--gold); }
+        .mobile-menu a:hover { color: var(--blue); }
 
         .close-menu {
             position: absolute;
@@ -192,26 +190,25 @@
             color: var(--charcoal);
         }
 
-        /* ─── Buttons ─── */
         .btn-primary {
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
             padding: 1rem 2.5rem;
-            background: var(--gold);
+            background: var(--blue);
             color: white;
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 500;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
             transition: all 0.3s;
-            border: 1px solid var(--gold);
+            border: 1.5px solid var(--blue);
         }
 
         .btn-primary:hover {
             background: transparent;
-            color: var(--gold);
+            color: var(--blue);
         }
 
         .btn-outline {
@@ -220,22 +217,21 @@
             gap: 0.75rem;
             padding: 1rem 2.5rem;
             background: transparent;
-            color: var(--gold);
+            color: var(--blue);
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 500;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
             transition: all 0.3s;
-            border: 1px solid var(--gold);
+            border: 1.5px solid var(--blue);
         }
 
         .btn-outline:hover {
-            background: var(--gold);
+            background: var(--blue);
             color: white;
         }
 
-        /* ─── Section Titles ─── */
         .section-header {
             text-align: center;
             margin-bottom: 4rem;
@@ -243,11 +239,11 @@
 
         .section-label {
             display: inline-block;
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.3em;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.28em;
             text-transform: uppercase;
-            color: var(--gold);
+            color: var(--blue);
             margin-bottom: 1rem;
         }
 
@@ -261,9 +257,10 @@
 
         .section-divider {
             width: 60px;
-            height: 1px;
-            background: var(--gold);
+            height: 2px;
+            background: var(--blue);
             margin: 1.5rem auto;
+            opacity: 0.3;
         }
 
         .section-subtitle {
@@ -272,9 +269,9 @@
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.8;
+            font-weight: 300;
         }
 
-        /* ─── Container ─── */
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -283,9 +280,8 @@
 
         section { padding: 7rem 0; }
 
-        /* ─── Footer ─── */
         footer {
-            background: var(--charcoal);
+            background: var(--blue-dark);
             color: rgba(255,255,255,0.7);
             padding: 5rem 0 2rem;
         }
@@ -298,7 +294,7 @@
         }
 
         .footer-brand .nav-logo { color: white; }
-        .footer-brand p { font-size: 0.9rem; line-height: 1.8; margin: 1rem 0 1.5rem; }
+        .footer-brand p { font-size: 0.9rem; line-height: 1.8; margin: 1rem 0 1.5rem; font-weight: 300; }
 
         .footer-social {
             display: flex;
@@ -307,15 +303,19 @@
 
         .footer-social a {
             width: 38px; height: 38px;
-            border: 1px solid rgba(201,169,110,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
             display: flex; align-items: center; justify-content: center;
-            color: var(--gold);
+            color: rgba(255,255,255,0.7);
             text-decoration: none;
             font-size: 0.9rem;
             transition: all 0.3s;
         }
 
-        .footer-social a:hover { background: var(--gold); color: white; border-color: var(--gold); }
+        .footer-social a:hover {
+            background: white;
+            color: var(--blue);
+            border-color: white;
+        }
 
         .footer-col h4 {
             font-family: var(--font-serif);
@@ -324,33 +324,34 @@
             color: white;
             margin-bottom: 1.5rem;
             padding-bottom: 0.75rem;
-            border-bottom: 1px solid rgba(201,169,110,0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         .footer-col ul { list-style: none; }
         .footer-col ul li { margin-bottom: 0.75rem; }
         .footer-col ul li a {
-            color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.55);
             text-decoration: none;
             font-size: 0.875rem;
+            font-weight: 300;
             transition: color 0.3s;
         }
-        .footer-col ul li a:hover { color: var(--gold); }
+        .footer-col ul li a:hover { color: white; }
 
         .footer-contact li { display: flex; gap: 0.75rem; align-items: flex-start; }
-        .footer-contact li i { color: var(--gold); margin-top: 3px; font-size: 0.8rem; }
+        .footer-contact li i { color: rgba(255,255,255,0.5); margin-top: 3px; font-size: 0.8rem; }
 
         .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.05);
+            border-top: 1px solid rgba(255,255,255,0.06);
             padding-top: 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 0.8rem;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255,255,255,0.35);
+            font-weight: 300;
         }
 
-        /* ─── Ornament ─── */
         .ornament {
             display: flex;
             align-items: center;
@@ -363,12 +364,11 @@
             content: '';
             width: 60px;
             height: 1px;
-            background: var(--gold-light);
+            background: rgba(0,46,122,0.25);
         }
 
-        .ornament i { color: var(--gold); font-size: 0.9rem; }
+        .ornament i { color: var(--blue); font-size: 0.9rem; opacity: 0.6; }
 
-        /* ─── Animations ─── */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -392,7 +392,6 @@
             transform: translateY(0);
         }
 
-        /* ─── Responsive ─── */
         @media (max-width: 1024px) {
             .footer-grid { grid-template-columns: 1fr 1fr; }
         }
@@ -404,14 +403,83 @@
             .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
             section { padding: 5rem 0; }
         }
+
+        /* =========================
+        HANYA UNTUK HALAMAN HOME
+        ========================= */
+
+        .navbar-home .nav-logo,
+        .navbar-home .nav-logo span {
+            color: #fff;
+        }
+
+        .navbar-home .nav-links a {
+            color: #fff;
+        }
+
+        .navbar-home .nav-links a::after {
+            background: #fff;
+        }
+
+        .navbar-home .nav-links a:hover {
+            color: #fff;
+        }
+
+        .navbar-home .nav-cta {
+            border-color: #fff;
+            color: #fff !important;
+        }
+
+        .navbar-home .nav-cta:hover {
+            background: #fff !important;
+            color: var(--blue) !important;
+        }
+
+        .navbar-home .hamburger span {
+            background: #fff;
+        }
+
+        /* Setelah discroll di Home */
+        .navbar-home.scrolled .nav-logo {
+            color: var(--charcoal);
+        }
+
+        .navbar-home.scrolled .nav-logo span {
+            color: var(--blue);
+        }
+
+        .navbar-home.scrolled .nav-links a {
+            color: var(--charcoal);
+        }
+
+        .navbar-home.scrolled .nav-links a::after {
+            background: var(--blue);
+        }
+
+        .navbar-home.scrolled .nav-links a:hover {
+            color: var(--blue);
+        }
+
+        .navbar-home.scrolled .nav-cta {
+            border-color: var(--blue);
+            color: var(--blue) !important;
+        }
+
+        .navbar-home.scrolled .nav-cta:hover {
+            background: var(--blue) !important;
+            color: #fff !important;
+        }
+
+        .navbar-home.scrolled .hamburger span {
+            background: var(--charcoal);
+        }
     </style>
 
     @yield('styles')
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar" id="navbar">
+<nav class="navbar {{ request()->routeIs('home') ? 'navbar-home' : '' }}" id="navbar">
     <div class="navbar-inner">
         @if(isset($profile) && $profile->logo)
             <a href="{{ route('home') }}" class="nav-logo">
@@ -438,7 +506,6 @@
     </div>
 </nav>
 
-<!-- Mobile Menu -->
 <div class="mobile-menu-overlay" id="menuOverlay"></div>
 <div class="mobile-menu" id="mobileMenu">
     <button class="close-menu" id="closeMenu">✕</button>
@@ -453,7 +520,6 @@
 
 @yield('content')
 
-<!-- Footer -->
 <footer>
     <div class="container">
         <div class="footer-grid">
@@ -462,11 +528,11 @@
                     <a href="{{ route('home') }}" style="display:block;margin-bottom:1rem">
                         <img src="{{ asset('storage/'.$profile->logo) }}"
                             alt="{{ $profile->company_name }}"
-                            style="height:45px;object-fit:contain;filter:brightness(0) invert(1)">
+                            style="height:40px;object-fit:contain">
                     </a>
                 @else
                     <a href="{{ route('home') }}" class="nav-logo" style="display:block;margin-bottom:1rem">
-                        Wedding<span style="color:var(--gold)">✦</span>
+                        Wedding<span style="color:rgba(255,255,255,0.5)">✦</span>
                     </a>
                 @endif
                 <p>{{ $profile->tagline ?? 'Crafting Your Perfect Love Story' }}</p>
@@ -526,20 +592,18 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; {{ date('Y') }} Gugugaga Wedding Organizer. All rights reserved.</p>
-            <p>Made with <span style="color:var(--gold)">♥</span> Love</p>
+            <p>&copy; {{ date('Y') }} Wedding Organizer. All rights reserved.</p>
+            {{-- <p>Made with <span style="color:rgba(255,255,255,0.4)">♥</span> Love</p> --}}
         </div>
     </div>
 </footer>
 
 <script>
-    // Navbar scroll
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
         navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // Mobile menu
     const hamburger = document.getElementById('hamburgerBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     const overlay = document.getElementById('menuOverlay');
@@ -552,7 +616,6 @@
     closeMenu.addEventListener('click', closeMobileMenu);
     overlay.addEventListener('click', closeMobileMenu);
 
-    // Reveal on scroll
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry, i) => {
